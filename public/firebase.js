@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 import { switchButtons, showLoginToast, showLogoutToast } from "./ui.js";
 
@@ -18,7 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const storage = getStorage();
-
+const db = getFirestore();
 
 //  <------------- custom functions ------------->
 export function checkuser() {
@@ -34,6 +35,22 @@ export function getPfp() {
   }
 }
 
+// <------------- Firestore Functions ------------->
+export async function setData(value) {
+  try {
+    const uid = auth.currentUser.uid;
+    if (!uid) {
+      return null;
+    }
+    const userRef = doc(db, "users", uid);
+    await setDoc(userRef, value); // Wait for setDoc to complete
+    console.log("Doc was set successfully!");
+    return true; // Indicate success
+  } catch (error) {
+    console.log("Error setting doc:", error);
+    return false; // Indicate failure
+  }
+}
 
 //  <------------- Storage Functions ------------->
 export async function uploadImgAndGetURL(fileName, file) {

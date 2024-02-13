@@ -1,4 +1,4 @@
-import { signInWithGoogle, checkuser, signOutUser, getPfp, uploadImgAndGetURL } from "./firebase.js";
+import { signInWithGoogle, checkuser, signOutUser, getPfp, uploadImgAndGetURL, setData } from "./firebase.js";
 
 // handle Form Submit
 document.getElementById('studentForm').addEventListener('submit', function(event) {
@@ -86,7 +86,10 @@ async function handleFormSubmit() {
             }
         }
     }
-    return values
+    const data = await setData(values);
+    console.log(data);
+
+    return data;
 }
 
 // function to switch login / logout buttons
