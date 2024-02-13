@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+
+    <style>
+        .next_button {
+            background-color: blue;
+            color: white;
+            font-size: xx-large;
+            text-align: right;
+            float: right;
+            margin-bottom: 2%;
+            margin-right: 2%; 
+        }
+
+        .next_button:hover {
+            background-color: rgb(68, 68, 246);
+        }
+    </style>
+
+</head>
+<body>
+    <center>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Bicho-pregui%C3%A7a_3.jpg/400px-Bicho-pregui%C3%A7a_3.jpg" alt="">
+    </center>
+    <center>
+        <h1 id="name">
+            Arham Sayyed
+        </h1>
+    </center>
+
+    <label for="bodybgColor">body background color: </label>
+    <input type="color" id="bodybgColor" name="bodybgColor" value="#ffffff">
+    <br>
+
+    <label for="nameTextColor">Name Text color: </label>
+    <input type="color" id="nameTextColor" name="nameTextColor" value="#000000">
+    <label for="nameBgColor">Name background color: </label>
+    <input type="color" id="nameBgColor" name="nameBgColor" value="#ffffff">
+    <br>
+    <label for="nameBorderStyle">Name Border style: </label>
+    <select id="nameBorderStyle" name="nameBorderStyle">
+        <option value="none">None</option>
+        <option value="solid">Solid</option>
+        <option value="dashed">Dashed</option>
+        <option value="dotted">Dotted</option>
+        <option value="double">Double</option>
+    </select>
+    <br>
+
+    <label for="listType">List type: </label>
+    <select id="listType" name="listType">
+        <option value="ul">Unordered List</option>
+        <option value="ol">Ordered List</option>
+    </select>
+    <br>
+
+    <label for="listTextColor">List Text color: </label>
+    <input type="color" id="listTextColor" name="listTextColor" value="#000000">
+    <label for="listBgColor">List background color: </label>
+    <input type="color" id="listBgColor" name="listBgColor" value="#ffffff">
+    <br>
+    <label for="listBorderStyle">List Border style: </label>
+    <select id="listBorderStyle" name="listBorderStyle">
+        <option value="none">None</option>
+        <option value="solid">Solid</option>
+        <option value="dashed">Dashed</option>
+        <option value="dotted">Dotted</option>
+        <option value="double">Double</option>
+    </select>
+    <br>
+
+    <h3 id="details">
+        <ul>
+            <li>Roll No: 159</li>
+            <li>Class: FYIT</li>
+            <li>Division: B</li>
+        </ul>
+    </h3>
+
+    <button type="button" class="next_button">
+        <span>
+            Next >
+        </span>
+    </button>
+
+    <script>
+        document.querySelectorAll('input[type="color"], select').forEach(item => {
+            item.addEventListener('input', function() {
+                updateValues();
+            });
+        });
+
+        document.querySelector(".next_button").addEventListener("click", () => {
+            const values = {
+                body: {
+                    bodybgColor: document.getElementById("bodybgColor").value
+                },
+                name: {
+                    nameTextColor: document.getElementById("nameTextColor").value,
+                    nameBgColor: document.getElementById("nameBgColor").value,
+                    nameBorderStyle: document.getElementById("nameBorderStyle").value
+                },
+                list: {
+                    listTextColor: document.getElementById("listTextColor").value,
+                    listBgColor: document.getElementById("listBgColor").value,
+                    listBorderStyle: document.getElementById("listBorderStyle").value,
+                    listType: document.getElementById("listType").value
+                }
+            };
+            console.log(values);
+        });
+
+        function updateValues() {
+            document.body.style.backgroundColor = document.getElementById("bodybgColor").value;
+            const name = document.getElementById("name");
+            name.style.color = document.getElementById("nameTextColor").value;
+            name.style.backgroundColor = document.getElementById("nameBgColor").value;
+            name.style.borderStyle = document.getElementById("nameBorderStyle").value;
+            const listType = document.getElementById("listType").value;
+            const details = document.getElementById("details");
+            if (listType === 'ul') {
+                details.innerHTML = `
+                    <ul>
+                        <li>Roll No: 159</li>
+                        <li>Class: FYIT</li>
+                        <li>Division: B</li>
+                    </ul>
+                `;
+            } else if (listType === 'ol') {
+                details.innerHTML = `
+                    <ol>
+                        <li>Roll No: 159</li>
+                        <li>Class: FYIT</li>
+                        <li>Division: B</li>
+                    </ol>
+                `;
+            }
+            details.style.color = document.getElementById("listTextColor").value;
+            details.style.backgroundColor = document.getElementById("listBgColor").value;
+            details.style.borderStyle = document.getElementById("listBorderStyle").value;
+        }
+    </script>
+</body>
+</html>

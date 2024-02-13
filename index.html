@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>%TITLE%</title>
+    <style>
+        .main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .main_text{
+            width: 50%;
+            text-align: center;
+            border-width: 5px;
+            border-style: solid;
+            border-color: %BORDER_BG_COLOR% ;
+            margin-top: 5%;
+            margin-left: 2%;
+    
+        }
+
+        .main_img{
+            margin-top: 5%;
+            margin-right: 2%;
+        }
+
+        h1 {
+            background-color: %H1_BG_COLOR% ;
+            color: %H1_FONT_COLOR% ;
+        }
+
+        a{
+            background-color: %A_BG_COLOR% ;
+            color: %A_FONT_COLOR% ;
+        }
+
+    </style>
+</head>
+<body bgcolor="%BODY_BG_COLOR%">
+    <h1 align="center">%NAME% PROJECT</h1>
+    <hr>
+<div class="main">
+    <div class="main_text">
+        <h1>
+            %TITLE%
+        </h1>
+        <p style="color: %PARA_1_BG_COLOR% ;" class="main_para">
+            %WIKI_PARA_1%
+        </p>
+    </div>
+    <img class="main_img" src="%MAIN_IMAGE_URL%">
+</div>
+
+%WIKI_PARA_2%
+
+%LINKS%
+
+</body>
+</html>

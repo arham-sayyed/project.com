@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lists</title>
+</head>
+<body>
+
+<h1>Types of Lists in HTML</h1>
+
+<h2>1. Unordered List (ul)</h2>
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+<h2>2. Ordered List (ol)</h2>
+<ol>
+  <li>First Item</li>
+  <li>Second Item</li>
+  <li>Third Item</li>
+</ol>
+
+<h2>3. Description List (dl)</h2>
+<dl>
+  <dt>HTML</dt>
+  <dd>HyperText Markup Language</dd>
+  <dt>CSS</dt>
+  <dd>Cascading Style Sheets</dd>
+  <dt>JS</dt>
+  <dd>JavaScript</dd>
+</dl>
+
+<h2>4. Nested List</h2>
+<ul>
+  <li>Fruits
+    <ul>
+      <li>Apple</li>
+      <li>Orange</li>
+      <li>Banana</li>
+    </ul>
+  </li>
+  <li>Vehicles
+    <ul>
+      <li>Car</li>
+      <li>Bus</li>
+      <li>Bicycle</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- Background Color -->
+<label for="bgColor">Background Color: </label>
+<input type="color" id="bgColor" name="bgColor" value="#ffffff" oninput="updateBackgroundColor(this.value)">
+<br>
+
+<!-- Text Color -->
+<label for="textColor">Text Color: </label>
+<input type="color" id="textColor" name="textColor" value="#000000" oninput="updateTextColor(this.value)">
+<br>
+
+<!-- Upload Background Image -->
+<label for="bgImage">Upload Background Image: </label>
+<input type="file" id="bgImage" name="bgImage" accept="image/*" onchange="updateBackgroundImage(this)">
+<br>
+
+<!-- Background Repeat -->
+<label for="bgRepeat">Background Repeat: </label>
+<select id="bgRepeat" name="bgRepeat" onchange="updateBackgroundRepeat(this.value)">
+  <option value="repeat">Repeat</option>
+  <option value="repeat-x">Repeat Horizontally</option>
+  <option value="repeat-y">Repeat Vertically</option>
+  <option value="no-repeat">No Repeat</option>
+</select>
+<br>
+
+<!-- Next Button -->
+<button type="button" class="next_button" onclick="logValues()">
+  <span>Next ></span>
+</button>
+
+<script>
+  function updateBackgroundColor(color) {
+    document.body.style.backgroundColor = color;
+  }
+
+  function updateTextColor(color) {
+    document.body.style.color = color;
+  }
+
+  function updateBackgroundImage(input) {
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      // console.log(e.target.result)
+      document.body.style.backgroundImage = `url('${e.target.result}')`;
+    }
+    reader.readAsDataURL(file);
+  }
+
+  function updateBackgroundRepeat(value) {
+    document.body.style.backgroundRepeat = value;
+  }
+
+  function logValues() {
+    const bgColor = document.getElementById("bgColor").value;
+    const textColor = document.getElementById("textColor").value;
+    const bgImage = document.getElementById("bgImage").files[0];
+    const bgRepeat = document.getElementById("bgRepeat").value;
+    console.log({
+      bgColor: bgColor,
+      textColor: textColor,
+      bgImage: bgImage,
+      bgRepeat: bgRepeat
+    });
+  }
+</script>
+
+</body>
+</html>

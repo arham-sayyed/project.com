@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Tags</title>
+
+  <style>
+    .next_button {
+      background-color: blue;
+      color: white;
+      font-size: xx-large;
+      text-align: right;
+      float: right;
+      margin-bottom: 2%;
+      margin-right: 2%; 
+    }
+
+    .next_button:hover {
+      background-color: rgb(68, 68, 246);
+    }
+  </style>
+</head>
+<body>
+
+  <label for="bodybgColor">body background color: </label>
+  <input type="color" id="bodybgColor" name="bodybgColor" value="#ffffff">
+  <br>
+  <h1> 
+    <label for="h1bgColor"> <span style="font-size: small; font-weight: normal; font-style: normal;"> h1 background color: </span> </label>
+    <input type="color" id="h1bgColor" name="h1bgColor" value="#ffffff">
+    Input Tags in HTML
+    <label for="h1textColor"> <span style="font-size: small; font-weight: normal; font-style: normal;"> h1 text color: </span> </label>
+    <input type="color" id="h1textColor" name="h1textColor" value="#000000">
+    <label for="border_h1"> <span style="font-size: small; font-weight: normal; font-style: normal;"> Choose a border: </span> </label>
+    <select name="border_h1" id="border_h1">
+      <option value="none">none</option>
+      <option value="dashed">dashed</option>
+      <option value="solid">solid</option>
+      <option value="double">double</option>
+      <option value="groove">groove</option>
+      <option value="ridge">ridge</option>
+      <option value="inset">inset</option>
+      <option value="outset">outset</option>
+      <option value="hidden">hidden</option>
+    </select>
+  </h1>
+
+  <form>
+    Username:
+    <input type="text" id="username" name="username" > <br> <br>
+
+    Password:
+    <input type="password" id="password" name="password"> <br> <br>
+
+    Email:
+    <input type="email" id="email" name="email"> <br> <br>
+
+    Age:
+    <input type="number" id="age" name="age"> <br> <br>
+
+    Date of Birth:
+    <input type="date" id="dob" name="dob"> <br> <br>
+
+    Favorite Color:
+    <input type="color" id="color" name="color"> <br> <br>
+
+    Gender:
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label> <br> <br>
+
+    Comments:
+    <textarea id="comments" name="comments" rows="4" cols="50"></textarea> <br> <br>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset"> <br> <br>
+  </form>
+
+  <label for="formbgColor">  form background color: </label>
+  <input type="color" id="formbgColor" name="formbgColor" value="#ffffff">
+  Input Tags in HTML
+  <label for="formTextColor">  form text color: </label>
+  <input type="color" id="formTextColor" name="formTextColor" value="#000000">
+  <label for="border_form">  Choose a border: </label>
+  <select name="border_form" id="border_form">
+    <option value="none">none</option>
+    <option value="dashed">dashed</option>
+    <option value="solid">solid</option>
+    <option value="double">double</option>
+    <option value="groove">groove</option>
+    <option value="ridge">ridge</option>
+    <option value="inset">inset</option>
+    <option value="outset">outset</option>
+    <option value="hidden">hidden</option>
+  </select>
+
+  <button type="button" class="next_button">
+    <span>
+        Next >
+    </span>
+  </button>
+
+  <script>
+    document.querySelectorAll('input[type="color"], select').forEach(item => {
+      item.addEventListener('input', function() {
+        updateValues();
+      });
+    });
+
+    document.querySelector(".next_button").addEventListener("click", () => {
+      const values = {
+        body: {
+                    bodybgColor: document.getElementById("bodybgColor").value
+                },
+        h1: {
+          h1bgColor: document.getElementById("h1bgColor").value,
+          h1textColor: document.getElementById("h1textColor").value,
+          border_h1: document.getElementById("border_h1").value
+        },
+        form:
+
+ {
+          formbgColor: document.getElementById("formbgColor").value,
+          formTextColor: document.getElementById("formTextColor").value,
+          border_form: document.getElementById("border_form").value
+        }
+      };
+      console.log(values);
+    });
+
+    function updateValues() {
+      const body = document.body.style;
+      const h1 = document.querySelector('h1').style;
+      const form = document.querySelector('form').style;
+      
+      body.backgroundColor = document.getElementById('bodybgColor').value;
+      h1.backgroundColor = document.getElementById('h1bgColor').value;
+      h1.color = document.getElementById('h1textColor').value;
+      h1.borderStyle = document.getElementById('border_h1').value;
+
+      form.backgroundColor = document.getElementById('formbgColor').value;
+      form.color = document.getElementById('formTextColor').value;
+      form.borderStyle = document.getElementById('border_form').value;
+    }
+  </script>
+</body>
+</html>

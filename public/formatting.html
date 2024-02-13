@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formatting Tags</title>
+</head>
+<body>
+
+<h1>Formatting Tags in HTML</h1>
+
+<h2>1. Bold (strong)</h2>
+<strong>This text is bold.</strong>
+
+<h2>2. Italic (em)</h2>
+<em>This text is italicized.</em>
+
+<h2>3. Underline (u)</h2>
+<u>This text is underlined.</u>
+
+<h2>4. Strikethrough (s)</h2>
+<s>This text is strikethrough.</s>
+
+<h2>5. Subscript (sub)</h2>
+This is a chemical formula: H<sub>2</sub>O
+
+<h2>6. Superscript (sup)</h2>
+The exponent is 2<sup>3</sup>.
+
+<!-- Background Color -->
+<label for="bgColor">Background Color: </label>
+<input type="color" id="bgColor" name="bgColor" value="#ffffff" oninput="updateBackgroundColor(this.value)">
+<br>
+
+<!-- Text Color -->
+<label for="textColor">Text Color: </label>
+<input type="color" id="textColor" name="textColor" value="#000000" oninput="updateTextColor(this.value)">
+<br>
+
+<!-- Upload Background Image -->
+<label for="bgImage">Upload Background Image: </label>
+<input type="file" id="bgImage" name="bgImage" accept="image/*" onchange="updateBackgroundImage(this)">
+<br>
+
+<!-- Background Repeat -->
+<label for="bgRepeat">Background Repeat: </label>
+<select id="bgRepeat" name="bgRepeat" onchange="updateBackgroundRepeat(this.value)">
+  <option value="repeat">Repeat</option>
+  <option value="repeat-x">Repeat Horizontally</option>
+  <option value="repeat-y">Repeat Vertically</option>
+  <option value="no-repeat">No Repeat</option>
+</select>
+<br>
+
+<!-- Next Button -->
+<button type="button" class="next_button" onclick="logValues()">
+  <span>Next ></span>
+</button>
+
+<script>
+  function updateBackgroundColor(color) {
+    document.body.style.backgroundColor = color;
+  }
+
+  function updateTextColor(color) {
+    document.body.style.color = color;
+  }
+
+  function updateBackgroundImage(input) {
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.body.style.backgroundImage = `url('${e.target.result}')`;
+    }
+    reader.readAsDataURL(file);
+  }
+
+  function updateBackgroundRepeat(value) {
+    document.body.style.backgroundRepeat = value;
+  }
+
+  function logValues() {
+    const bgColor = document.getElementById("bgColor").value;
+    const textColor = document.getElementById("textColor").value;
+    const bgImage = document.getElementById("bgImage").files[0];
+    const bgRepeat = document.getElementById("bgRepeat").value;
+    console.log({
+      bgColor: bgColor,
+      textColor: textColor,
+      bgImage: bgImage,
+      bgRepeat: bgRepeat
+    });
+  }
+</script>
+
+</body>
+</html>
