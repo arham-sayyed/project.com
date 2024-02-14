@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" defer src="firebase.js"></script>
     <script type="module" defer src="ui.js"></script>
@@ -57,6 +60,16 @@
             <div class="photo-preview" id="photoPreview" style="display: none;">
                 <img id="previewImage" src="" alt="Uploaded Photo" style="max-width: 200px;">
             </div>
+
+            <div class="text-center">
+                <div class="spinner-border text-primary visually-hidden" id="loader" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <i class="bi bi-check-circle text-success visually-hidden" id="success_check" style="font-size: 2rem;"></i>
+                <i class="bi bi-x-circle text-danger visually-hidden" id="failure_check" style="font-size: 2rem;"></i>
+            </div>
+
+
             <div class="next-button">
                 <button type="submit" class="btn btn-primary" id="next_button" ><i class="fas fa-arrow-right"></i> Next</button>
             </div>
@@ -88,5 +101,15 @@
                 <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
+
+        <div class="toast align-items-center justify-content-end text-white border-0" role="alert" aria-live="assertive" aria-atomic="true" id="successToast" style="position: absolute; bottom: 0px; right: 25px; background-color: #5cb85c">
+            <div class="d-flex">
+                <div class="toast-body" id="login_toast_message">
+                    Congratulations 🎉 you can now edit your website!
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        
 </body>
 </html>

@@ -67,7 +67,8 @@ async function handleFormSubmit() {
     if(!url || !name || !rollNo || !classVal || !div_val || !aboutPhoto) {
         return null; // stop the function, ui response is already sent in index.html
     }
-
+    
+    showLoader();
     const aboutPhotoURL = await uploadImgAndGetURL(aboutPhoto.name, aboutPhoto);
 
     if (!aboutPhotoURL) {
@@ -86,10 +87,16 @@ async function handleFormSubmit() {
             }
         }
     }
-    const data = await setData(values);
-    console.log(data);
+    const isDataSetted = await setData(values);
+    changeLoader(isDataSetted);
+    console.log(isDataSetted);
+    //  TODO: toast the message: "You can now edit your website!"
+    showSuccessToast();
+    setTimeout(() => {
+        window.location.href = "home.html";
+    }, 2000);
 
-    return data;
+    // return isDataSetted;
 }
 
 // function to switch login / logout buttons
@@ -117,6 +124,13 @@ function showSigninPrompt() {
     bsToast.show();
 }
 
+function showSuccessToast() {
+    const toast = document.getElementById('successToast');
+    const bsToast = new bootstrap.Toast(toast);
+    bsToast.show();
+}
+
+
 export function showLogoutToast() {
     const toast = document.getElementById('logoutToast');
     const bsToast = new bootstrap.Toast(toast);
@@ -133,6 +147,27 @@ export function showLoginToast(name) {
 
 
 
+// Fucntion to show/hide loader/success/failure
+function showLoader() {
+    const loader = document.getElementById("loader");
+    nextButton.classList.add("visually-hidden")
+    loader.classList.remove("visually-hidden");
+}
+
+function changeLoader(isSuccess) {
+    const loader = document.getElementById("loader");
+    loader.classList.add("visually-hidden");
+
+    const success_check = document.getElementById("success_check");
+    const failure_check = document.getElementById("failure_check");
+
+    if (isSuccess) {
+        success_check.classList.remove("visually-hidden");
+    }
+    else if(!isSuccess) {
+        failure_check.classList.remove("visually-hidden");
+    }
+}
 
 
 
