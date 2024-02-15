@@ -69,6 +69,16 @@ async function handleFormSubmit() {
     }
     
     showLoader();
+
+    const isValidURL = await checkUrlStatusCode(url); // false if url is invalid
+    console.log(isValidURL); // false
+    
+    if (isValidURL) { // false
+        showIncorrectUrlPrompt();
+        return; // break the function!
+        // TODO: show a toast saying that the url must be correct!
+    }
+
     const aboutPhotoURL = await uploadImgAndGetURL(aboutPhoto.name, aboutPhoto);
 
     if (!aboutPhotoURL) {
@@ -115,10 +125,34 @@ export function switchButtons() {
 }
 
 
-// Function to show the toast
+// check if url exists
+async function checkUrlStatusCode(url) {
+    // Check if the URL is a valid Wikipedia URL
+    if (!(url.startsWith('https://en.wikipedia.org/wiki/') || url.startsWith('http://en.wikipedia.org/wiki/'))) {
+        console.log('Invalid Wikipedia URL');
+        return false; // url isn't a wikipedia url
+    }
+    try {
+        const response = await fetch(url);
+        return (response.status === 200) ? true : false; 
+    } catch (error) {
+        console.error('Error fetching URL:', error);
+        return false;
+    }
+}
 
+
+
+// Function to show the toast
 function showSigninPrompt() {
     const toast = document.getElementById('signinPromptToast');
+    // console.log(toast);
+    const bsToast = new bootstrap.Toast(toast);
+    bsToast.show();
+}
+
+function showIncorrectUrlPrompt() {
+    const toast = document.getElementById('incorrectUrlToast');
     // console.log(toast);
     const bsToast = new bootstrap.Toast(toast);
     bsToast.show();
