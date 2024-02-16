@@ -1,0 +1,8 @@
+so we have to ignore the .html files in /public because all of it will now be converted into .ejs files and will be moved to /views folder 
+EXCEPT index.html file 
+
+api.js or app.js is our entry point for the api 
+
+so basically, what we have to do is render the editable file's data using ejs but when we have to send the file 
+we will have to do string manipulation in order to create files, this will also be generated on the server using the files in the /server folder
+
