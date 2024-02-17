@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%= wikiname  %> </title>
+    
+    <style>
+        .main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .main_text {
+            width: 50%;
+            text-align: center;
+            border-width: 5px;
+            border-style: solid;
+            border-color: black;
+            margin-top: 5%;
+            margin-left: 2%;
+            padding: 20px;
+        }
+
+        .main_img {
+            margin-top: 5%;
+            margin-right: 2%;
+        }
+
+        .next_button {
+            background-color: blue;
+            color: white;
+            font-size: xx-large;
+            text-align: right;
+            float: right;
+            margin-bottom: 2%;
+            margin-right: 2%; 
+        }
+
+        .next_button:hover {
+            background-color: rgb(68, 68, 246);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADING -->
+
+    <h1 align="center" id="project_name"> <%= name %>'s project </h1>
+
+    <label for="h1textColor">heading Text color: </label>
+    <input type="color" id="h1textColor" name="h1textColor" value="#000000">
+    <label for="h1bgColor">heading background color: </label>
+    <input type="color" id="h1bgColor" name="h1bgColor" value="#ffffff">
+
+    <label for="border_h1">Choose a border:</label>
+    <select name="border_h1" id="border_h1">
+        <option value="none">none</option>
+        <option value="dashed">dashed</option>
+        <option value="solid">solid</option>
+        <option value="double">double</option>
+        <option value="groove">groove</option>
+        <option value="ridge">ridge</option>
+        <option value="inset">inset</option>
+        <option value="outset">outset</option>
+        <option value="hidden">hidden</option>
+    </select>
+
+    <!-- HR -->
+    <hr id="hr">
+    
+    <label for="hrColor">hr color: </label>
+    <input type="color" id="hrColor" name="hrColor" value="#000000">
+
+    <label for="hrSize">hr size: </label>
+    <input type="range" id="hrSize" name="hrSize" value="5" min="0" max="20">
+    <label for="hrWidth">hr width: </label>
+    <input type="range" id="hrWidth" name="hrWidth" value="100" min="0" max="100">
+
+    <!-- BODY BG -->
+    <label for="bodybgColor">body background color: </label>
+    <input type="color" id="bodybgColor" name="bodybgColor" value="#ffffff">
+
+    <div class="main">
+        
+        <!-- MAIN CONTAINER -->
+        <div class="main_text" id="main_container">
+
+            <label for="mainBgColor">container background color: </label>
+            <input type="color" id="mainBgColor" name="mainBgColor" value="#ffffff">
+
+            <!-- H1 MAIN  -->
+            <h1 id="main_h1">
+                <label for="main_h1textColor"> <span style="font-size: small; font-weight:normal;"> h1 Text color: </span> </label>
+                <input type="color" id="main_h1textColor" name="main_h1textColor" value="#000000">
+                Sloth
+                <label for="main_h1bgColor"> <span style="font-size: small; font-weight:normal;"> h1 background color: </span> </label>
+                <input type="color" id="main_h1bgColor" name="main_h1bgColor" value="#ffffff">
+            </h1>
+            
+            <!-- PARA MAIN -->
+            <p class="main_para" id="main_para">
+                <b>Sloths</b> are a <a href="/wiki/Neotropical_realm" title="Neotropical realm">Neotropical</a> group of <a href="/wiki/Xenarthra" title="Xenarthra">xenarthran</a> mammals constituting the suborder <b>Folivora</b>, including the extant <a href="/wiki/Arboreal_locomotion" title="Arboreal locomotion">
+
+arboreal</a> tree sloths and extinct terrestrial <a href="/wiki/Ground_sloth" title="Ground sloth">ground sloths</a>. Noted for their slowness of movement, tree sloths spend most of their lives hanging upside down in the trees of the <a href="/wiki/Tropical_rainforest" title="Tropical rainforest">tropical rainforests</a> of <a href="/wiki/South_America" title="South America">South America</a> and <a href="/wiki/Central_America" title="Central America">Central America</a>. Sloths are considered to be most closely related to <a href="/wiki/Anteater" title="Anteater">anteaters</a>, together making up the xenarthran order <a href="/wiki/Pilosa" title="Pilosa">Pilosa</a>.
+            </p>
+
+            <label for="paraTextColor">para Text color: </label>
+            <input type="color" id="paraTextColor" name="paraTextColor" value="#000000">
+            <label for="paraBgColor">para background color: </label>
+            <input type="color" id="paraBgColor" name="paraBgColor" value="#ffffff">
+
+        </div>
+        
+        <!-- BORDER MAIN -->
+        <label for="borderMain"> -- Choose a border:</label>
+        <select name="borderMain" id="borderMain">
+            <option value="none">none</option>
+            <option value="dashed">dashed</option>
+            <option value="solid">solid</option>
+            <option value="double">double</option>
+            <option value="groove">groove</option>
+            <option value="ridge">ridge</option>
+            <option value="inset">inset</option>
+            <option value="outset">outset</option>
+            <option value="hidden">hidden</option>
+        </select>
+
+        <img class="main_img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Bicho-pregui%C3%A7a_3.jpg/400px-Bicho-pregui%C3%A7a_3.jpg">
+    </div>
+    <!-- MAIN END -->
+
+    <!-- PARA 2-->
+    <p>There are six extant sloth species in two genera - <i><a href="/wiki/Bradypus" class="mw-redirect" title="Bradypus">Bradypus</a></i> (three-toed sloths) and <i><a href="/wiki/Choloepus" class="mw-redirect" title="Choloepus">Choloepus</a></i> (two-toed sloths). Despite this traditional naming, all sloths have three toes on each rear limb-- although two-toed sloths have only two digits on each forelimb.<sup id="cite_ref-scf_3-0" class="reference"><a href="#cite_note-scf-3">[3]</a></sup> The two groups of sloths are from different, distantly related families, and are thought to have evolved their morphology via <a href="/wiki/Parallel_evolution" title="Parallel evolution">parallel evolution</a> from terrestrial ancestors. Besides the extant species, many species of ground sloths ranging up to the size of elephants (like <i><a href="/wiki/Megatherium" title="Megatherium">Megatherium</a></i>) inhabited both North and South America during the <a href="/wiki/Pleistocene" title="Pleistocene">Pleistocene</a> Epoch. However, they became extinct during the <a href="/wiki/Quaternary_extinction_event" class="mw-redirect" title="Quaternary extinction event">Quaternary extinction event</a> around 12,000 years ago, along with most large bodied animals in the New World. The extinction correlates in time with the arrival of humans, but <a href="/wiki/Climate_variability_and_change" title="Climate variability and change">climate change</a> has also been suggested to have contributed. Members of an endemic <a href="/wiki/Evolutionary_radiation" title="Evolutionary radiation">radiation</a> of <a href="/wiki/Megalocnidae" title="Megalocnidae">Caribbean sloths</a> also formerly lived in the <a href="/wiki/Greater_Antilles" title="Greater Antilles">Greater Antilles</a> but became extinct after humans settled the archipelago in the mid-Holocene, around 6,000 years ago.
+    </p>
+
+    <!-- LINKS -->
+    <br><br>
+    <label for="A_textColor">links Text color: </label>
+    <input type="color" id="A_textColor" name="A_textColor" value="#000000">
+    <label for="A_bgColor">links background color: </label>
+    <input type="color" id="A_bgColor" name="A_bgColor" value="#ffffff">
+    <br>
+    <a href="about.html" class="links" >about page</a>
+    <br>
+    <a href="home.html" class="links">home page</a>
+    <br>
+    <a href="input.html" class="links" >input tags </a>
+    <br>
+    <a href="headings.html" class="links">heading tags</a>
+    <br>
+    <a href="lists.html" class="links" >list tags</a>
+    <br>
+    <a href="formatting.html" class="links">formatting tags</a>
+    <br>
+    <a href="div.html" class="links">div tags</a>
+
+    <button type="button" class="next_button">
+        <span>
+            Next >
+        </span>
+    </button>
+
+    <script>
+        const prName = document.getElementById("project_name");
+        const hr = document.getElementById("hr");
+        const mainContainer = document.getElementById("main_container");
+        const main_hr =
+
+ document.getElementById("main_h1");
+        const main_para = document.getElementById("main_para");
+
+        // Add event listeners to update styles on input
+        document.getElementById("h1textColor").addEventListener("input", () => prName.style.color = document.getElementById("h1textColor").value);
+        document.getElementById("h1bgColor").addEventListener("input", () => prName.style.backgroundColor = document.getElementById("h1bgColor").value);
+        document.getElementById("border_h1").addEventListener("change", () => prName.style.borderStyle = document.getElementById("border_h1").value);
+
+        document.getElementById("hrColor").addEventListener("input", () => hr.style.borderColor = document.getElementById("hrColor").value);
+        document.getElementById("hrSize").addEventListener("input", () => hr.style.borderWidth = document.getElementById("hrSize").value + "px");
+        document.getElementById("hrWidth").addEventListener("input", () => hr.style.width = document.getElementById("hrWidth").value + "%");
+
+        document.getElementById("bodybgColor").addEventListener("input", () => document.body.style.backgroundColor = document.getElementById("bodybgColor").value);
+
+        document.getElementById("mainBgColor").addEventListener("input", () => mainContainer.style.backgroundColor = document.getElementById("mainBgColor").value);
+
+        document.getElementById("main_h1textColor").addEventListener("input", () => main_hr.style.color = document.getElementById("main_h1textColor").value);
+        document.getElementById("main_h1bgColor").addEventListener("input", () => main_hr.style.backgroundColor = document.getElementById("main_h1bgColor").value);
+
+        document.getElementById("paraTextColor").addEventListener("input", () => main_para.style.color = document.getElementById("paraTextColor").value);
+        document.getElementById("paraBgColor").addEventListener("input", () => main_para.style.backgroundColor = document.getElementById("paraBgColor").value);
+
+        document.getElementById("borderMain").addEventListener("change", () => mainContainer.style.borderStyle = document.getElementById("borderMain").value);
+
+        // Optional: Add event listeners for the links
+        const links = document.querySelectorAll(".links");
+        links.forEach(link => {
+            link.addEventListener("mouseenter", () => {
+                link.style.color = document.getElementById("A_textColor").value;
+                link.style.backgroundColor = document.getElementById("A_bgColor").value;
+            });
+            link.addEventListener("mouseleave", () => {
+                link.style.color = ""; // Reset to default
+                link.style.backgroundColor = ""; // Reset to default
+            });
+        });
+
+        document.querySelector(".next_button").addEventListener("click", () => {
+        const values = {
+            project_name: {
+                h1textColor: document.getElementById("h1textColor").value,
+                h1bgColor: document.getElementById("h1bgColor").value,
+                border_h1: document.getElementById("border_h1").value
+            },
+            hr: {
+                hrColor: document.getElementById("hrColor").value,
+                hrSize: document.getElementById("hrSize").value,
+                hrWidth: document.getElementById("hrWidth").value
+            },
+            body: {
+                bodybgColor: document.getElementById("bodybgColor").value
+            },
+            main_container: {
+                mainBgColor: document.getElementById("mainBgColor").value,
+                main_h1textColor: document.getElementById("main_h1textColor").value,
+                main_h1bgColor: document.getElementById("main_h1bgColor").value,
+                paraTextColor: document.getElementById("paraTextColor").value,
+                paraBgColor: document.getElementById("paraBgColor").value,
+                borderMain: document.getElementById("borderMain").value
+            },
+            links: {
+                A_textColor: document.getElementById("A_textColor").value,
+                A_bgColor: document.getElementById("A_bgColor").value
+            }
+        };
+        console.log(values);
+    });
+
+    </script>
+</body>
+</html>
