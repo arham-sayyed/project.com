@@ -4,7 +4,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChang
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-import { switchButtons, showLoginToast, showLogoutToast } from "./ui.js";
+import { switchButtons, showLoginToast, showLogoutToast, createUserUIDCookie } from "./ui.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDe0nzpG11NNzNJ-xRVMtsjUNJJ_f-Llck",
@@ -24,6 +24,10 @@ const db = getFirestore();
 //  <------------- custom functions ------------->
 export function checkuser() {
   return auth.currentUser ? true : false; // return true if user is signed in
+}
+
+export function getCurrentUser() {
+  return auth.currentUser.uid;
 }
 
 export function getPfp() {
@@ -115,6 +119,7 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, refer: https://firebase.google.com/docs/reference/js/auth.user
     const uid = user.uid;
+    createUserUIDCookie(uid);
   } else {
     // User is signed out
   }

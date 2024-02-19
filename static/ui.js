@@ -1,4 +1,6 @@
-import { signInWithGoogle, checkuser, signOutUser, getPfp, uploadImgAndGetURL, setData } from "./firebase.js";
+import { signInWithGoogle, checkuser, signOutUser, getPfp, uploadImgAndGetURL, setData, getCurrentUser } from "./firebase.js";
+
+
 
 // handle Form Submit
 document.getElementById('studentForm').addEventListener('submit', function(event) {
@@ -108,6 +110,14 @@ async function handleFormSubmit() {
 
     // return isDataSetted;
 }
+
+export function createUserUIDCookie(value) {
+    var d = new Date();
+    d.setTime(d.getTime() + (15 * 24 * 60 * 60 * 1000)); // 15 days from now
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = "userUID=" + value + "; " + expires;
+  }
+  
 
 // function to switch login / logout buttons
 export function switchButtons() {

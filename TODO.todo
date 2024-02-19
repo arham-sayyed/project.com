@@ -3,6 +3,59 @@ EXCEPT index.html file
 
 api.js or app.js is our entry point for the api 
 
-so basically, what we have to do is render the editable file's data using ejs but when we have to send the file 
-we will have to do string manipulation in order to create files, this will also be generated on the server using the files in the /server folder
+so basically, what we have to do is render the editable file's data using ejs and when we have to download 
+the file on the user end, then we will take the info from the current page example: 
+POST: /home 
+then the server/controller will render the home.ejs file (the file to be downloaded) and it will download the 
+rendered file on the client as home.html and the user moves to the next page
 
+
+
+structure:
+    project.com\
+        |
+        |--middlewares\
+        |       |
+        |       |--logger.js --> "logs every request and response status code in console"
+        |
+        |
+        |--models\ --> "all the (database) firebase related things will be here"
+        |       |--project0sloth-firebase.json --> "firebase keys"
+        |       |--Server-firebase.js --> "firebase functions"
+        |
+        |
+        |--controllers\
+        |       |
+        |       |--homeController.js  --> "controller for /home recieve data -> process by calling firebase functions -> response accordingly"
+        |       |--aboutController.js
+        |       |--listsController.js
+        |       |--formattingController.js
+        |       |--headingsController.js
+        |       |--inputController.js
+        |
+        |
+        |--routes\
+        |       |
+        |       |--index.js --> "respond with indes.html file"
+        |       |--home.js --> "call home controller -> build the file -> render the home.ejs on client, on POST call home controller and save data in firebase"
+        |       |--about.js
+        |       |--lists.js
+        |       |--formatting.js
+        |       |--headings.js
+        |       |--input.js
+        |
+        |
+        |--views\
+        |       |
+        |       |--home.ejs --> "only for editor side rendering for now, actual page will rendered separately and downloaded as soon as the user clicks next" 
+        |       |--about.ejs
+        |       |--lists.ejs
+        |       |--formatting.ejs
+        |       |--headings.ejs
+        |       |--input.ejs
+        |
+        |
+
+so when the user clicks next button, the data will be sent to our api the api/controller will then
+process/render the data on the other file (home.ejs which is intended to be downloaded) 
+and will download that file on the client's machine and the client moves to the next page.
