@@ -5,7 +5,10 @@ import { signInWithGoogle, checkuser, signOutUser, getPfp, uploadImgAndGetURL, s
 // handle Form Submit
 document.getElementById('studentForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
-    handleFormSubmit();
+
+    // if(checkuser()){
+    //     handleFormSubmit();
+    // }
 
     // TODO: construct this object & send it to firebase
     // const values = {
@@ -41,6 +44,7 @@ nextButton.addEventListener("click", () => {
 
     if (userExists) {
         stopHighlightLogin();
+        handleFormSubmit();
     } else {
         showSigninPrompt();
         startHighlightLogin(); 
@@ -56,6 +60,9 @@ function startHighlightLogin() {
 function stopHighlightLogin() {
     signInButton.classList.remove("highlight-animation"); // creates no error if the class isn't present
 }
+
+
+
 
 // handle form submit function
 async function handleFormSubmit() {
@@ -73,10 +80,11 @@ async function handleFormSubmit() {
     showLoader();
 
     const isValidURL = await checkUrlStatusCode(url); // false if url is invalid
-    console.log(isValidURL); // false
+    // console.log(isValidURL); // false
     
-    if (isValidURL) { // false
+    if (!isValidURL) { // false
         showIncorrectUrlPrompt();
+        changeLoader(isValidURL);
         return; // break the function!
         // TODO: show a toast saying that the url must be correct!
     }
@@ -104,12 +112,17 @@ async function handleFormSubmit() {
     console.log(isDataSetted);
     //  TODO: toast the message: "You can now edit your website!"
     showSuccessToast();
-    setTimeout(() => {
-        window.location.href = "home.html";
-    }, 2000);
+    // setTimeout(() => {
+    //     window.location.href = "/home";
+    // }, 2000);
 
     // return isDataSetted;
 }
+
+
+
+
+
 
 export function createUserUIDCookie(value) {
     var d = new Date();
@@ -142,9 +155,11 @@ async function checkUrlStatusCode(url) {
         console.log('Invalid Wikipedia URL');
         return false; // url isn't a wikipedia url
     }
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const fullUrl = proxyUrl + url;
     try {
-        const response = await fetch(url);
-        return (response.status === 200) ? true : false; 
+        const response = await fetch(fullUrl);
+        return (response.status === 200);
     } catch (error) {
         console.error('Error fetching URL:', error);
         return false;
@@ -194,8 +209,10 @@ export function showLoginToast(name) {
 // Fucntion to show/hide loader/success/failure
 function showLoader() {
     const loader = document.getElementById("loader");
+    const hintText = document.getElementById("hintText");
     nextButton.classList.add("visually-hidden")
     loader.classList.remove("visually-hidden");
+    hintText.classList.remove("visually-hidden")
 }
 
 function changeLoader(isSuccess) {

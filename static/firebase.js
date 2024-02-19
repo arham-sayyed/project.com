@@ -89,7 +89,7 @@ export function signInWithGoogle() {
 
       // The signed-in user info.
       const user = result.user;
-      console.log("User signed in:", user);
+      // console.log("User signed in:", user);
       showLoginToast(user.displayName);
     })
     .catch((error) => {
