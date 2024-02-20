@@ -6,8 +6,10 @@ const app = express();
 const PORT = 80;
 
 app.use(cookieParser());
-
 app.use(express.static(path.join(__dirname , "static")))
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 
 
@@ -16,8 +18,8 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public/index.html"))
 });
 
-app.get("/home", (res, req) => {
-    
+app.get("/home", (req, res) => {
+    res.render("home",  { wikiname: 'sloth', name: 'arham' })
 })
 
 app.listen(
