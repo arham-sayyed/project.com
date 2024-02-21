@@ -59,3 +59,8 @@ structure:
 so when the user clicks next button, the data will be sent to our api the api/controller will then
 process/render the data on the other file (home.ejs which is intended to be downloaded) 
 and will download that file on the client's machine and the client moves to the next page.
+
+
+SO NOW WE HAVE TO MAKE SET COOKIE ON THE NEXT BUTTON, THE COOKIE WILL BE HAVING THE DATA ABOUT THE WEB SCHEMA,
+THIS COOKIE WILL BE SENT TO SERVER, AND THE PAGE WILL BE GENERATED, SHOWED (PREVIEW) AND DOWNLOADED! 
+AFTER DOWNLOAD, THE USER WILL BE REDIRECTED TO NEXT PAGE.

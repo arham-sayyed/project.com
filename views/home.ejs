@@ -234,6 +234,27 @@ arboreal</a> tree sloths and extinct terrestrial <a href="/wiki/Ground_sloth" ti
             }
         };
         console.log(values);
+        fetch('/home', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+        // Handle successful response from server if needed
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle error if needed
+    });
     });
 
     </script>

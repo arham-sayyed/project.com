@@ -1,11 +1,13 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = 80;
 
 app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname , "static")))
 
 app.set('view engine', 'ejs');
@@ -21,6 +23,12 @@ app.get("/", (req, res) => {
 
 app.get("/home", (req, res) => {
     res.render("home",  { wikiname: 'sloth', name: 'arham' })
+})
+
+app.post("/home", (req, res) => {
+    const data = req.body;
+    console.log(data);
+    res.status(200).send({message: "data received"})
 })
 
 app.listen(
