@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" defer src="firebase.js"></script>
+    <script type="module" defer src="ui.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="header">
+        <h1 >project.com 
+            <button type="button" class="login-with-google-btn" id="google-signin-button">
+                Sign in with Google
+              </button>
+
+
+              <button class="logout-button" id="logoutButton">
+                <img id="pfp" src="https://placehold.co/24x24" width="24" height="24">
+                  <p class="text">LogOut</p>
+                </button>
+            </h1>
+    </div>
+    <div class="container">
+        <h2 class="text-center">Add info to build your web📝</h2>
+        <form id="studentForm">
+            <div class="form-group">
+                <label for="url">URL:</label>
+                <input type="url" class="form-control" id="url" name="url" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="rollNo">Roll No:</label>
+                <input type="text" class="form-control" id="rollNo" name="rollNo" required>
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" class="form-control" id="class" name="class" required>
+            </div>
+            <div class="form-group">
+                <label for="div">Div:</label>
+                <input type="text" class="form-control" id="div" name="div" required>
+            </div>
+            <div class="form-group">
+                <label for="photo">Photo: <span style="font-size: small; font-weight: 200; "> <br> <i class="bi bi-exclamation-triangle text-warning"></i> This picture will be showed on about me page </span></label>
+                <input type="file" class="form-control-file" id="photo" name="photo" accept="image/*" required>
+            </div>
+            <div class="photo-preview" id="photoPreview" style="display: none;">
+                <img id="previewImage" src="" alt="Uploaded Photo" style="max-width: 200px;">
+            </div>
+
+            <div class="text-center">
+                <div class="spinner-border text-primary visually-hidden" id="loader" role="status">
+                  <!-- <span class="">Loading...</span> -->
+                </div>
+                <i class="bi bi-check-circle text-success visually-hidden" id="success_check" style="font-size: 2rem;"></i>
+                <i class="bi bi-x-circle text-danger visually-hidden" id="failure_check" style="font-size: 2rem;"></i>
+                <br>
+                  <span class="visually-hidden" id="hintText" style="color: #acacac;">Hint: fulfill the requirements & reload the page</span>
+            </div>
+
+
+            <div class="next-button">
+                <button type="submit" class="btn btn-primary" id="next_button" ><i class="fas fa-arrow-right"></i> Next</button>
+            </div>
+        </form>
+
+        <div class="toast align-items-center justify-content-end text-white border-0" role="alert" aria-live="assertive" aria-atomic="true" id="logoutToast" style="position: absolute; bottom: 0px; right: 25px; background-color: blue">
+            <div class="d-flex">
+                <div class="toast-body">
+                    logged out successfully! 
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+
+        <div class="toast align-items-center justify-content-end text-white border-0" role="alert" aria-live="assertive" aria-atomic="true" id="loginToast" style="position: absolute; bottom: 0px; right: 25px; background-color: blueviolet">
+            <div class="d-flex">
+                <div class="toast-body" id="login_toast_message">
+                    Hi there!
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        
+        <div class="toast align-items-center justify-content-end text-white border-0" role="alert" aria-live="assertive" aria-atomic="true" id="signinPromptToast" style="position: absolute; bottom: 0px; right: 25px; background-color: rgb(255, 73, 73);">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Please Sign-in to continue! 
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+
+        <div class="toast align-items-center justify-content-end text-white border-0" role="alert" aria-live="assertive" aria-atomic="true" id="successToast" style="position: absolute; bottom: 0px; right: 25px; background-color: #5cb85c">
+            <div class="d-flex">
+                <div class="toast-body" id="login_toast_message">
+                    Congratulations 🎉 you can now edit your website!
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        
+        <div class="toast align-items-center justify-content-end text-white border-0" role="alert" aria-live="assertive" aria-atomic="true" id="incorrectUrlToast" style="position: absolute; bottom: 0px; right: 25px; background-color: rgb(255, 73, 73);">
+            <div class="d-flex">
+                <div class="toast-body">
+                    The URL must be a valid <a href="https://en.wikipedia.org/wiki/Sloth">wikipedia</a> url!
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        
+</body>
+</html>
