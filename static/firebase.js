@@ -4,7 +4,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChang
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-import { switchButtons, showLoginToast, showLogoutToast, createUserUIDCookie } from "./ui.js";
+import { switchButtons, showLoginToast, showLogoutToast, createUserUIDCookie, removeUserUIDCookie } from "./ui.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDe0nzpG11NNzNJ-xRVMtsjUNJJ_f-Llck",
@@ -122,5 +122,6 @@ onAuthStateChanged(auth, (user) => {
     createUserUIDCookie(uid);
   } else {
     // User is signed out
+    removeUserUIDCookie();
   }
 });

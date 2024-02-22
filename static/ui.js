@@ -129,8 +129,12 @@ export function createUserUIDCookie(value) {
     d.setTime(d.getTime() + (15 * 24 * 60 * 60 * 1000)); // 15 days from now
     var expires = "expires=" + d.toUTCString();
     document.cookie = "userUID=" + value + "; " + expires;
-  }
-  
+}
+
+export function removeUserUIDCookie() {
+    var expires = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "userUID=; " + expires;
+}
 
 // function to switch login / logout buttons
 export function switchButtons() {
