@@ -61,5 +61,8 @@ async function checkIfUserExists(uid) {
 //     console.error('Error checking user existence:', error);
 //   });
 
-module.exports = getUserDocument;
+module.exports = {
+  getUserDocument,
+  checkIfUserExists
+};
   
