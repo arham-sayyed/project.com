@@ -7,10 +7,13 @@ const homeControllers = require(path.join(__dirname, '..' , 'controllers', 'home
 
 router.get('/', homeControllers.renderHomePage);
 
-router.post('/', (req, res) => {
-    const data = req.body;
-    console.log(data);
-    res.status(200).send({message: 'Data received'});
-})
+router.post('/', homeControllers.postHomePageData);
+
+router.put('/', homeControllers.methodNotAllowed);
+router.delete('/', homeControllers.methodNotAllowed);
+router.patch('/', homeControllers.methodNotAllowed);
+router.options('/', homeControllers.methodNotAllowed);
+
+router.all(/^(?!\/$).*/, homeControllers.redirect);
 
 module.exports = router;

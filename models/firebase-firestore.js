@@ -32,7 +32,7 @@ async function checkIfUserExists(uid) {
   try {
     const userRecord = await admin.auth().getUser(uid);
     // User exists
-    console.log('User exists:', userRecord.toJSON());
+    // console.log('User exists:', userRecord.toJSON());
     return true;
   } catch (error) {
     if (error.code === 'auth/user-not-found') {
