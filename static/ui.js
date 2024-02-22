@@ -112,9 +112,9 @@ async function handleFormSubmit() {
     console.log(isDataSetted);
     //  TODO: toast the message: "You can now edit your website!"
     showSuccessToast();
-    // setTimeout(() => {
-    //     window.location.href = "/home";
-    // }, 2000);
+    setTimeout(() => {
+        window.location.href = "/home";
+    }, 2000);
 
     // return isDataSetted;
 }
@@ -154,6 +154,9 @@ async function checkUrlStatusCode(url) {
     if (!(url.startsWith('https://en.wikipedia.org/wiki/') || url.startsWith('http://en.wikipedia.org/wiki/'))) {
         console.log('Invalid Wikipedia URL');
         return false; // url isn't a wikipedia url
+    }
+    else { 
+        return true; // this is to stop the CORS blocking, should & must be removed to enable the status checker 
     }
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const fullUrl = proxyUrl + url;

@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
+    console.log(req.body.idToken)
     res.render("home",  { wikiname: 'sloth', name: 'arham' })
 })
 
