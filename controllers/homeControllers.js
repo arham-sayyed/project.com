@@ -1,5 +1,7 @@
 const path = require('path');
 const validateCookie = require(path.join(__dirname, 'cookieValidation'));
+const firebaseModel = require(path.join(__dirname, '..', 'models', 'firebase-firestore'));
+const extractWikiContent = require(path.join(__dirname, '..', 'models', 'extractWikiContent'));
 
 function validateHomePageData(inputJson) {
     try {
@@ -44,9 +46,20 @@ exports.renderHomePage = async (req, res) => {
 
     const userUID = req.cookies.userUID;
     const authorized = await validateCookie(userUID);
+    const generalData = await firebaseModel.getUserDocument(userUID);
+
+    const wikiData = await extractWikiContent(generalData.index.general.wikiURL);
+
+    const homePageData = {
+        title: wikiData.title,
+        name: generalData.index.general.name,
+        para1: wikiData.para1,
+        image: wikiData.wikiImage,
+        para2: wikiData.para2
+    }
 
     if (authorized) {
-        res.render('home', { wikiname: 'sloth', name: 'arham' });
+        res.render('home', { title: homePageData.title, name: homePageData.name, para1: homePageData.para1, image: homePageData.image, para2: homePageData.para2 });
     } else {
         res.status(401).render('401.ejs');
     }
