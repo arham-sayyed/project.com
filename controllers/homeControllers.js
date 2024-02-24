@@ -46,8 +46,10 @@ exports.renderHomePage = async (req, res) => {
 
     const userUID = req.cookies.userUID;
     const authorized = await validateCookie(userUID);
+    
+    if (authorized) {
     const generalData = await firebaseModel.getUserDocument(userUID);
-
+    
     const wikiData = await extractWikiContent(generalData.index.general.wikiURL);
 
     const homePageData = {
@@ -57,8 +59,7 @@ exports.renderHomePage = async (req, res) => {
         image: wikiData.wikiImage,
         para2: wikiData.para2
     }
-
-    if (authorized) {
+    console.log(homePageData);
         res.render('home', { title: homePageData.title, name: homePageData.name, para1: homePageData.para1, image: homePageData.image, para2: homePageData.para2 });
     } else {
         res.status(401).render('401.ejs');
@@ -68,13 +69,38 @@ exports.renderHomePage = async (req, res) => {
 exports.postHomePageData = async (req, res) => {
     const pageData = req.body;
     const isValid = validateHomePageData(pageData);
-
     const userUID = req.cookies.userUID;
     const authorized = await validateCookie(userUID);
-    
+        
     if (isValid && authorized) {
         // use pageData however you want
-        res.status(200).send({message: 'Data received'});
+        const generalData = await firebaseModel.getUserDocument(userUID);
+        const wikiData = await extractWikiContent(generalData.index.general.wikiURL);
+
+        const homePageData = {
+            title: wikiData.title,
+            name: generalData.index.general.name,
+            para1: wikiData.para1,
+            image: wikiData.wikiImage,
+            para2: wikiData.para2
+        }
+
+        const renderHomePageData = Object.assign({}, homePageData, pageData)
+        res.render('home2', renderHomePageData, (err, html) => {
+            if (err) {
+                console.error('Error rendering EJS:', err);
+                res.status(500).send('Error rendering EJS');
+              } else {
+                // Set the appropriate headers to trigger a download
+                res.set({
+                  'Content-Disposition': 'attachment; filename="rendered.ejs"',
+                  'Content-Type': 'text/plain'
+                });
+                // Send the rendered EJS as a downloadable file
+                res.send(html);
+              }
+        });
+        // res.status(200).send({message: 'Data received'});
     } else {
         res.status(400).send({message: 'Bad Request!'});
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hi</title>
+    <title> <%= title %> </title>
     <style>
         .main {
             display: flex;
@@ -14,12 +14,10 @@
             width: 50%;
             text-align: center;
             border-width: 5px;
-            border-style: <%= project_name.border_h1 %>;
             border-color: black;
             margin-top: 5%;
             margin-left: 2%;
             padding: 20px;
-            background-color: <%= main_container.mainBgColor %>;
         }
 
         .main_img {
@@ -42,24 +40,20 @@
         }
     </style>
 </head>
-<body>
-    <h1 align="center" id="project_name" style="color: <%= project_name.h1textColor %>; background-color: <%= project_name.h1bgColor %>;">hi's project</h1>
+<body bgcolor="<%= body.bodybgColor %>">
+    <h1 align="center" id="project_name" style="color: <%= project_name.h1textColor %>; background-color: <%= project_name.h1bgColor %>; border-style: <%= project_name.border_h1 %>"> <%= name %>'s project</h1>
     <hr style="border-color: <%= hr.hrColor %>; border-width: <%= hr.hrSize %>px; width: <%= hr.hrWidth %>%;">
 
     <div class="main">
-        <div class="main_text">
-            <h1 id="main_h1" style="color: <%= main_container.main_h1textColor %>; background-color: <%= main_container.main_h1bgColor %>;">Sloth</h1>
+        <div class="main_text" style="background-color: <%= main_container.mainBgColor %>; border-style: <%= main_container.borderMain %>">
+            <h1 id="main_h1" style="color: <%= main_container.main_h1textColor %>; background-color: <%= main_container.main_h1bgColor %>;"> <%= title %> </h1>
             <p class="main_para" style="color: <%= main_container.paraTextColor %>; background-color: <%= main_container.paraBgColor %>;">
-                <b>Sloths</b> are a <a href="/wiki/Neotropical_realm" title="Neotropical realm">Neotropical</a> group of <a href="/wiki/Xenarthra" title="Xenarthra">xenarthran</a> mammals constituting the suborder <b>Folivora</b>, including the extant <a href="/wiki/Arboreal_locomotion" title="Arboreal locomotion">arboreal</a> tree sloths and extinct terrestrial <a href="/wiki/Ground_sloth" title="Ground sloth">ground sloths</a>. Noted for their slowness of movement, tree sloths spend most of their lives hanging upside down in the trees of the <a href="/wiki/Tropical_rainforest" title="Tropical rainforest">tropical rainforests</a> of <a href="/wiki/South_America" title="South America">South America</a> and <a href="/wiki/Central_America" title="Central America">Central America</a>. Sloths are considered to be most closely related to <a href="/wiki/Anteater" title="Anteater">anteaters</a>, together making up the xenarthran order <a href="/wiki/Pilosa" title="Pilosa">Pilosa</a>.
+                <%= para1 %>
             </p>
         </div>
-        <img class="main_img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Bicho-pregui%C3%A7a_3.jpg/400px-Bicho-pregui%C3%A7a_3.jpg">
+        <img class="main_img" src="<%= image %>" width="400px">
     </div>
-
-    <p>
-        There are six extant sloth species in two genera - <i><a href="/wiki/Bradypus" class="mw-redirect" title="Bradypus">Bradypus</a></i> (three–toed sloths) and <i><a href="/wiki/Choloepus" class="mw-redirect" title="Choloepus">Choloepus</a></i> (two–toed sloths). Despite this traditional naming, all sloths have three toes on each rear limb-- although two-toed sloths have only two digits on each forelimb.<sup id="cite_ref-scf_3-0" class="reference"><a href="#cite_note-scf-3">[3]</a></sup> The two groups of sloths are from different, distantly related families, and are thought to have evolved their morphology via <a href="/wiki/Parallel_evolution" title="Parallel evolution">parallel evolution</a> from terrestrial ancestors. Besides the extant species, many species of ground sloths ranging up to the size of elephants (like <i><a href="/wiki/Megatherium" title="Megatherium">Megatherium</a></i>) inhabited both North and South America during the <a href="/wiki/Pleistocene" title="Pleistocene">Pleistocene</a> Epoch. However, they became extinct during the <a href="/wiki/Quaternary_extinction_event" class="mw-redirect" title="Quaternary extinction event">Quaternary extinction event</a> around 12,000 years ago, along with most large bodied animals in the New World. The extinction correlates in time with the arrival of humans, but <a href="/wiki/Climate_variability_and_change" title="Climate variability and change">climate change</a> has also been suggested to have contributed. Members of an endemic <a href="/wiki/Evolutionary_radiation" title="Evolutionary radiation">radiation</a> of <a href="/wiki/Megalocnidae" title="Megalocnidae">Caribbean sloths</a> also formerly lived in the <a href="/wiki/Greater_Antilles" title="Greater Antilles">Greater Antilles</a> but became extinct after humans settled the archipelago in the mid-Holocene, around 6,000 years ago.
-    </p>
-
+    <%= para2 %>
     <a href="about.html" style="color: <%= links.A_textColor %>; background-color: <%= links.A_bgColor %>;">about page</a>
     <br>
     <a href="home.html" style="color: <%= links.A_textColor %>; background-color: <%= links.A_bgColor %>;">home page</a>
