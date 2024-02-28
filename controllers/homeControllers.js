@@ -85,22 +85,24 @@ exports.postHomePageData = async (req, res) => {
             para2: wikiData.para2
         }
 
-        const renderHomePageData = Object.assign({}, homePageData, pageData)
-        res.render('home2', renderHomePageData, (err, html) => {
+        const renderHomePageData = Object.assign({}, homePageData, pageData) // combining the page preferences and the user data 
+        // console.log(renderHomePageData);
+
+        res.render(path.join(__dirname,  '..', 'templates', 'home.ejs'), renderHomePageData, (err, html) => {
             if (err) {
                 console.error('Error rendering EJS:', err);
                 res.status(500).send('Error rendering EJS');
               } else {
-                // Set the appropriate headers to trigger a download
+                
+                console.log('trying to download...');
                 res.set({
-                  'Content-Disposition': 'attachment; filename="rendered.ejs"',
-                  'Content-Type': 'text/plain'
+                    'Content-Type': 'text/html',
+                    'Content-Disposition': 'attachment; filename="home.html"'
                 });
-                // Send the rendered EJS as a downloadable file
-                res.send(html);
+                // console.log(html);
+                res.send(html)
               }
         });
-        // res.status(200).send({message: 'Data received'});
     } else {
         res.status(400).send({message: 'Bad Request!'});
     }

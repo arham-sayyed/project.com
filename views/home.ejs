@@ -237,15 +237,23 @@
         },
         body: JSON.stringify(values)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
+    .then(value => value.text())
+    .then((content) => {
+        const blob = new Blob([content], {
+            type: 'text/html'
+        });
+        const link = document.createElement('a');
+        link.style.display = 'none';
+
+        link.href = URL.createObjectURL(blob);
+        link.download = 'home.html';
+        link.click();
+
+        document.body.remove(link);
+
     })
-    .then(data => {
-        console.log('Success:', data);
-        // Handle successful response from server if needed
-    })
+
+
     .catch(error => {
         console.error('Error:', error);
         // Handle error if needed
