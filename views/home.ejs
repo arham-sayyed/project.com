@@ -250,7 +250,9 @@
         link.click();
 
         document.body.remove(link);
-
+    })
+    .then(() => {
+        window.location.pathname = '/about';
     })
 
 
