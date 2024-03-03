@@ -10,22 +10,24 @@
     </style>
 
 </head>
-<body>
+<body bgcolor="<%= body.bodybgColor %>">
+    
     <center>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Bicho-pregui%C3%A7a_3.jpg/400px-Bicho-pregui%C3%A7a_3.jpg" alt="">
+        <img src="<%= index.general.aboutPic %>" alt="my picture">
     </center>
+
     <center>
-        <h1>
-        Arham Sayyed
+        <h1 style="color: <%= name.nameTextColor %>; background-color: <%= name.nameBgColor %>; border-style: <%= name.nameBorderStyle %>;">
+            <%= index.general.name %>
         </h1>
     </center>
 
     <h3>
-        <ul>
-            <li>Roll No: 159</li>
-            <li>Class: FYIT</li>
-            <li>Division: B</li>
-        </ul>
+        <<%= list.listType %>  style="color: <%= list.listTextColor %>; background-color: <%= list.listBgColor %>; border-style: <%= list.listBorderStyle %>;">
+            <li>Roll No: <%= index.general.roll %></li>
+            <li>Class: <%= index.general.className %></li>
+            <li>Division: <%= index.general.div %></li>
+        </<%= list.listType %>>
     </h3>
 
 </body>

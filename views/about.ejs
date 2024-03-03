@@ -24,11 +24,11 @@
 </head>
 <body>
     <center>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Bicho-pregui%C3%A7a_3.jpg/400px-Bicho-pregui%C3%A7a_3.jpg" alt="">
+        <img src=<%= aboutPic %> alt="my picture" width="400px">
     </center>
     <center>
         <h1 id="name">
-            Arham Sayyed
+            <%= name %>
         </h1>
     </center>
 
@@ -75,9 +75,9 @@
 
     <h3 id="details">
         <ul>
-            <li>Roll No: 159</li>
-            <li>Class: FYIT</li>
-            <li>Division: B</li>
+            <li>Roll No: <%= roll %></li>
+            <li>Class <%= className %>:</li>
+            <li>Division: <%= div %></li>
         </ul>
     </h3>
 
@@ -112,6 +112,35 @@
                 }
             };
             console.log(values);
+
+            fetch('/about', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(values)
+            })
+            .then(value => value.text())
+            .then((content) => {
+                const blob = new Blob([content], {
+                    type: 'text/html'
+                });
+                const link = document.createElement('a');
+                link.style.display = 'none';
+                link.href = URL.createObjectURL(blob);
+                link.download = 'about.html';
+                link.click();
+
+                document.body.remove(link);
+            })
+            .then(() => {
+                window.location.pathname = '/headings'
+            })
+
+            .catch(error => {
+                console.error('Error: ', error);
+            })
+
         });
 
         function updateValues() {
@@ -125,17 +154,17 @@
             if (listType === 'ul') {
                 details.innerHTML = `
                     <ul>
-                        <li>Roll No: 159</li>
-                        <li>Class: FYIT</li>
-                        <li>Division: B</li>
+                        <li>Roll No: <%= roll %> </li>
+                        <li>Class: <%= className %> </li>
+                        <li>Division: <%= div %> </li>
                     </ul>
                 `;
             } else if (listType === 'ol') {
                 details.innerHTML = `
                     <ol>
-                        <li>Roll No: 159</li>
-                        <li>Class: FYIT</li>
-                        <li>Division: B</li>
+                        <li>Roll No: <%= roll %> </li>
+                        <li>Class: <%= className %> </li>
+                        <li>Division: <%= div %> </li>
                     </ol>
                 `;
             }

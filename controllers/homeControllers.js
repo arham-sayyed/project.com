@@ -59,7 +59,7 @@ exports.renderHomePage = async (req, res) => {
         image: wikiData.wikiImage,
         para2: wikiData.para2
     }
-    console.log(homePageData);
+    // console.log(homePageData);
         res.render('home', { title: homePageData.title, name: homePageData.name, para1: homePageData.para1, image: homePageData.image, para2: homePageData.para2 });
     } else {
         res.status(401).render('401.ejs');
@@ -90,7 +90,7 @@ exports.postHomePageData = async (req, res) => {
 
         res.render(path.join(__dirname,  '..', 'templates', 'home.ejs'), renderHomePageData, (err, html) => {
             if (err) {
-                console.error('Error rendering EJS:', err);
+                console.log('Error rendering EJS:', err);
                 res.status(500).send('Error rendering EJS');
               } else {
                 
