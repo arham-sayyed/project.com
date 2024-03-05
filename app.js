@@ -18,11 +18,13 @@ app.set('views', path.join(__dirname, 'views'));
 // import routes
 const homeRoutes = require(path.join(__dirname, 'routes', 'homeRoutes'));
 const aboutRoutes = require(path.join(__dirname, 'routes', 'aboutRoutes'));
+const headingsRoutes = require(path.join(__dirname, 'routes', 'headingsRoutes'));
 
 
 // use routes
 app.use('/home', homeRoutes);
 app.use('/about', aboutRoutes);
+app.use('/headings', headingsRoutes);
 
 
 

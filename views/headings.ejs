@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Headings</title>
+
+<style>
+            .next_button {
+            background-color: blue;
+            color: white;
+            font-size: xx-large;
+            text-align: right;
+            float: right;
+            margin-bottom: 2%;
+            margin-right: 2%; 
+        }
+
+        .next_button:hover {
+            background-color: rgb(68, 68, 246);
+        }
+</style>
+
+</head>
+<body>
+
+<h1>Heading Tags in HTML</h1>
+
+<h2>1. Heading 1 (h1)</h2>
+<h1 id="h1_heading">This is a Heading 1</h1>
+<label for="h1TextColor">Text color:</label>
+<input type="color" id="h1TextColor" name="h1TextColor" value="#000000">
+<label for="h1bgColor">Background color:</label>
+<input type="color" id="h1bgColor" name="h1bgColor" value="#ffffff">
+<label for="h1BorderColor">Border color:</label>
+<input type="color" id="h1BorderColor" name="h1BorderColor" value="#000000">
+<label for="h1Border">Border style:</label>
+<select name="h1Border" id="h1Border">
+  <option value="none">none</option>
+  <option value="solid">solid</option>
+  <option value="dashed">dashed</option>
+  <option value="dotted">dotted</option>
+</select>
+
+<h2>2. Heading 2 (h2)</h2>
+<h2 id="h2_heading">This is a Heading 2</h2>
+<label for="h2TextColor">Text color:</label>
+<input type="color" id="h2TextColor" name="h2TextColor" value="#000000">
+<label for="h2bgColor">Background color:</label>
+<input type="color" id="h2bgColor" name="h2bgColor" value="#ffffff">
+<label for="h2BorderColor">Border color:</label>
+<input type="color" id="h2BorderColor" name="h2BorderColor" value="#000000">
+<label for="h2Border">Border style:</label>
+<select name="h2Border" id="h2Border">
+  <option value="none">none</option>
+  <option value="solid">solid</option>
+  <option value="dashed">dashed</option>
+  <option value="dotted">dotted</option>
+</select>
+
+<h2>3. Heading 3 (h3)</h2>
+<h3 id="h3_heading">This is a Heading 3</h3>
+<label for="h3TextColor">Text color:</label>
+<input type="color" id="h3TextColor" name="h3TextColor" value="#000000">
+<label for="h3bgColor">Background color:</label>
+<input type="color" id="h3bgColor" name="h3bgColor" value="#ffffff">
+<label for="h3BorderColor">Border color:</label>
+<input type="color" id="h3BorderColor" name="h3BorderColor" value="#000000">
+<label for="h3Border">Border style:</label>
+<select name="h3Border" id="h3Border">
+  <option value="none">none</option>
+  <option value="solid">solid</option>
+  <option value="dashed">dashed</option>
+  <option value="dotted">dotted</option>
+</select>
+
+<h2>4. Heading 4 (h4)</h2>
+<h4 id="h4_heading">This is a Heading 4</h4>
+<label for="h4TextColor">Text color:</label>
+<input type="color" id="h4TextColor" name="h4TextColor" value="#000000">
+<label for="h4bgColor">Background color:</label>
+<input type="color" id="h4bgColor" name="h4bgColor" value="#ffffff">
+<label for="h4BorderColor">Border color:</label>
+<input type="color" id="h4BorderColor" name="h4BorderColor" value="#000000">
+<label for="h4Border">Border style:</label>
+<select name="h4Border" id="h4Border">
+  <option value="none">none</option>
+  <option value="solid">solid</option>
+  <option value="dashed">dashed</option>
+  <option value="dotted">dotted</option>
+</select>
+
+<h2>5. Heading 5 (h5)</h2>
+<h5 id="h5_heading">This is a Heading 5</h5>
+<label for="h5TextColor">Text color:</label>
+<input type="color" id="h5TextColor" name="h5TextColor" value="#000000">
+<label for="h5bgColor">Background color:</label>
+<input type="color" id="h5bgColor" name="h5bgColor" value="#ffffff">
+<label for="h5BorderColor">Border color:</label>
+<input type="color" id="h5BorderColor" name="h5BorderColor" value="#000000">
+<label for="h5Border">Border style:</label>
+<select name="h5Border" id="h5Border">
+  <option value="none">none</option>
+  <option value="solid">solid</option>
+  <option value="dashed">dashed</option>
+  <option value="dotted">dotted</option>
+</select>
+
+<h2>6. Heading 6 (h6)</h2>
+<h6 id="h6_heading">This is a Heading 6</h6>
+<label for="h6TextColor">Text color:</label>
+<input type="color" id="h6TextColor" name="h6TextColor" value="#000000">
+<label for="h6bgColor">Background color:</label>
+<input type="color" id="h6bgColor" name="h6bgColor" value="#ffffff">
+<label for="h6BorderColor">Border color:</label>
+<input type="color" id="h6BorderColor" name="h6BorderColor" value="#000000">
+<label for="h6Border">Border style:</label>
+<select name="h6Border" id="h6Border">
+  <option value="none">none</option>
+  <option value="solid">solid</option>
+  <option value="dashed">dashed</option>
+  <option value="dotted">dotted</option>
+</select>
+
+<label for="bodybgColor">Body background color:</label>
+<input type="color" id="bodybgColor" name="bodybgColor" value="#ffffff">
+<br><br>
+<button type="button" class="next_button">
+  <span>
+      Next >
+  </span>
+</button>
+
+<script>
+  document.querySelectorAll('input[type="color"], select').forEach(item => {
+    item.addEventListener('input', function() {
+      updateValues();
+    });
+  });
+
+  document.querySelector(".next_button").addEventListener("click", () => {
+    const values = {
+      h1: {
+        textColor: document.getElementById("h1TextColor").value,
+        bgColor: document.getElementById("h1bgColor").value,
+        borderColor: document.getElementById("h1BorderColor").value,
+        borderStyle: document.getElementById("h1Border").value
+      },
+      h2: {
+        textColor: document.getElementById("h2TextColor").value,
+        bgColor: document.getElementById("h2bgColor").value,
+        borderColor: document.getElementById("h2BorderColor").value,
+        borderStyle: document.getElementById("h2Border").value
+      },
+      h3: {
+        textColor: document.getElementById("h3TextColor").value,
+        bgColor: document.getElementById("h3bgColor").value,
+        borderColor: document.getElementById("h3BorderColor").value,
+        borderStyle: document.getElementById("h3Border").value
+      },
+      h4: {
+        textColor: document.getElementById("h4TextColor").value,
+        bgColor: document.getElementById("h4bgColor").value,
+        borderColor: document.getElementById("h4BorderColor").value,
+        borderStyle: document.getElementById("h4Border").value
+      },
+      h5: {
+        textColor: document.getElementById("h5TextColor").value,
+        bgColor: document.getElementById("h5bgColor").value,
+        borderColor: document.getElementById("h5BorderColor").value,
+        borderStyle: document.getElementById("h5Border").value
+      },
+      h6: {
+        textColor: document.getElementById("h6TextColor").value,
+        bgColor: document.getElementById("h6bgColor").value,
+        borderColor: document.getElementById("h6BorderColor").value,
+        borderStyle: document.getElementById("h6Border").value
+      },
+      body: {
+        bgColor: document.getElementById("bodybgColor").value
+      }
+    };
+    console.log(values);
+
+    fetch('/headings', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    })
+    .then(value => value.text())
+    .then((content) => {
+      const blob = new Blob([content], {
+        type: 'text/html'
+      });
+      const link = document.createElement('a');
+      link.style.display = 'none';
+      link.href = URL.createObjectURL(blob);
+      link.download = 'headings.html';
+      link.click();
+
+      document.body.remove(link);
+    })
+    .then(() => {
+      window.location.pathname = '/formatting'
+    })
+
+    .catch(error => {
+      console.error('Error: ', error);
+    })
+
+
+
+
+
+  });
+  function updateValues() {
+  const headings = [
+    "h1_heading",
+    "h2_heading",
+    "h3_heading",
+    "h4_heading",
+    "h5_heading",
+    "h6_heading"
+  ];
+
+  headings.forEach(id => {
+    const heading_num = id.split("_")[0];
+    const textColor = document.getElementById(`${heading_num}TextColor`).value;
+    const bgColor = document.getElementById(`${heading_num}bgColor`).value;
+    const borderColor = document.getElementById(`${heading_num}BorderColor`).value;
+    const borderStyle = document.getElementById(`${heading_num}Border`).value;
+
+    const heading = document.getElementById(id);
+    const style = heading.style;
+
+    style.color = textColor;
+    style.backgroundColor = bgColor;
+    style.borderColor = borderColor;
+    style.borderStyle = borderStyle;
+  });
+
+  document.body.style.backgroundColor = document.getElementById("bodybgColor").value;
+}
+</script>
+
+</body>
+</html>
