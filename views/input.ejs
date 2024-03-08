@@ -133,6 +133,38 @@
         }
       };
       console.log(values);
+
+
+      fetch('/input', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    })
+    .then(value => value.text())
+    .then((content) => {
+      const blob = new Blob([content], {
+        type: 'text/html'
+      });
+      const link = document.createElement('a');
+      link.style.display = 'none';
+      link.href = URL.createObjectURL(blob);
+      link.download = 'input.html';
+      link.click();
+
+      document.body.remove(link);
+    })
+    .then(() => {
+      window.location.pathname = '/input'
+    })
+
+    .catch(error => {
+      console.error('Error: ', error);
+    })
+
+
+      
     });
 
     function updateValues() {
