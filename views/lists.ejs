@@ -96,10 +96,43 @@
   function logValues() {
     const bgColor = document.getElementById("bgColor").value;
     const textColor = document.getElementById("textColor").value;
-    console.log({
+    const values = {
       bgColor: bgColor,
       textColor: textColor,
-    });
+    }
+
+    console.log(values);
+
+
+      fetch('/lists', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    })
+    .then(value => value.text())
+    .then((content) => {
+      const blob = new Blob([content], {
+        type: 'text/html'
+      });
+      const link = document.createElement('a');
+      link.style.display = 'none';
+      link.href = URL.createObjectURL(blob);
+      link.download = 'lists.html';
+      link.click();
+
+      document.body.remove(link);
+    })
+    .then(() => {
+      window.location.pathname = '/formatting'
+    })
+
+    .catch(error => {
+      console.error('Error: ', error);
+    })
+
+
   }
 </script>
 
