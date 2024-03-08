@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formatting Tags</title>
+
+<style>
+          .next_button {
+            background-color: blue;
+            color: white;
+            font-size: xx-large;
+            text-align: right;
+            float: right;
+            margin-bottom: 2%;
+            margin-right: 2%; 
+        }
+
+        .next_button:hover {
+            background-color: rgb(68, 68, 246);
+        }
+</style>
+
+</head>
+<body>
+
+<h1>Formatting Tags in HTML</h1>
+
+<h2>1. Bold (strong)</h2>
+<strong>This text is bold.</strong>
+
+<h2>2. Italic (em)</h2>
+<em>This text is italicized.</em>
+
+<h2>3. Underline (u)</h2>
+<u>This text is underlined.</u>
+
+<h2>4. Strikethrough (s)</h2>
+<s>This text is strikethrough.</s>
+
+<h2>5. Subscript (sub)</h2>
+This is a chemical formula: H<sub>2</sub>O
+
+<h2>6. Superscript (sup)</h2>
+The exponent is 2<sup>3</sup>.
+
+<!-- Background Color -->
+<label for="bgColor">Background Color: </label>
+<input type="color" id="bgColor" name="bgColor" value="#ffffff" oninput="updateBackgroundColor(this.value)">
+<br>
+
+<!-- Text Color -->
+<label for="textColor">Text Color: </label>
+<input type="color" id="textColor" name="textColor" value="#000000" oninput="updateTextColor(this.value)">
+<br>
+
+<!-- Next Button -->
+<button type="button" class="next_button" onclick="logValues()">
+  <span>Next ></span>
+</button>
+
+<script>
+  function updateBackgroundColor(color) {
+    document.body.style.backgroundColor = color;
+  }
+
+  function updateTextColor(color) {
+    document.body.style.color = color;
+  }
+
+  function logValues() {
+    const bgColor = document.getElementById("bgColor").value;
+    const textColor = document.getElementById("textColor").value;
+    const values = {
+      bgColor: bgColor,
+      textColor: textColor,
+    }
+
+    console.log(values);
+
+      fetch('/formatting', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    })
+    .then(value => value.text())
+    .then((content) => {
+      const blob = new Blob([content], {
+        type: 'text/html'
+      });
+      const link = document.createElement('a');
+      link.style.display = 'none';
+      link.href = URL.createObjectURL(blob);
+      link.download = 'formatting.html';
+      link.click();
+
+      document.body.remove(link);
+    })
+    .then(() => {
+      window.location.pathname = '/now_what'
+    })
+
+    .catch(error => {
+      console.error('Error: ', error);
+    })
+
+  }
+</script>
+
+</body>
+</html>
