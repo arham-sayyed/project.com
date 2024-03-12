@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation</title>
+<style>
+  body {
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .navbar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #007BFF;
+    padding-top: 20px;
+    overflow-x: hidden;
+  }
+
+  .navbar a {
+    padding: 6px 8px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #f8f9fa;
+    display: block;
+  }
+
+  .navbar a:hover {
+    background-color: #0056b3;
+  }
+
+  .content {
+    margin-left: 220px;
+    padding: 20px;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+  }
+
+  h2 {
+    color: #007BFF;
+  }
+
+  h3 {
+    color: #28a745;
+  }
+
+  h4 {
+    color: #007BFF !important;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+  table, th, td {
+  border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+/* 
+  tr:hover {
+    background-color: #f5f5f5;
+  } */
+
+  td:first-child, th:first-child {
+    border-top-left-radius: 15px;
+  }
+
+  td:last-child, th:last-child {
+    border-top-right-radius: 15px;
+  }
+
+  td:first-child {
+    border-left: none;
+  }
+
+  td:last-child {
+    border-right: none;
+  }
+
+  .custom-ol {
+    list-style: none;
+    counter-reset: step-counter;
+    padding-left: 0;
+  }
+
+  .custom-ol li::before {
+    content: "Step " counter(step-counter) ": ";
+    counter-increment: step-counter;
+    /* font-weight: bold; */
+    font-size: 1.25rem;
+    font-weight: bolder;
+    color: #28a745 !important;
+  }
+
+  /* Code Block */
+  pre {
+    background-color: #f0f8ff;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+
+
+  mark {
+    font-family: monospace;
+    background-color: lightgray;
+    padding: 2px;
+    border-radius: 4px;
+  }
+
+
+  .zoom-img-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .zoom-img-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  .zoom-img-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 999;
+  }
+  
+  .zoom-img-overlay img {
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+
+  /* Dark Mode */
+  .dark-mode {
+    background-color: #343a40 !important;
+    color: #f8f9fa !important;
+  }
+
+  .dark-mode .navbar {
+    background-color: #212529 !important;
+  }
+
+  .dark-mode .navbar a {
+    color: #f8f9fa !important;
+  }
+
+  .dark-mode .navbar a:hover {
+    background-color: #495057 !important;
+  }
+
+  .dark-mode .content {
+    background-color: #343a40 !important;
+  }
+
+  .dark-mode h2 {
+    color: #17a2b8 !important;
+  }
+  
+  .dark-mode h4 {
+    color: #17a2b8 !important;
+  }
+
+  .dark-mode h3 {
+    color: #28a745 !important;
+  }
+
+  .dark-mode pre {
+    background-color: #212529 !important;
+  }
+
+  .dark-mode  mark {
+    font-family: monospace;
+    background-color: #212529 !important;
+    padding: 2px;
+    border-radius: 4px;
+    color: unset;
+  }
+
+.dark-mode table, th, td {
+  border: 1px solid grey;
+}
+  /* Toggle Button Style */
+  .toggle-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    color: #f8f9fa;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 999;
+  }
+
+  .toggle-button:hover {
+    background-color: #0056b3;
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="#introduction">Introduction</a>
+  <ul style="color: white;">
+    <li> <a href="#faq-highlights"><span style="font-size: smaller; color: lightgray;"> FAQ Highlights</span></a> </li>
+  </ul>
+  <a href="#usage">Usage</a>
+  <!-- <a href="#examples">Examples</a> -->
+  <a href="#conclusion">Conclusion</a>
+</div> 
+<!-- navbar end -->
+
+<div class="content">
+
+  <h1>Documentation</h1>
+
+  <section id="introduction">
+    <h2>Introduction</h2>
+    <p>Welcome to the documentation page. This document provides an overview of the project and how to use it step by step.</p>
+    <p>This project can be used to create html pages. Like basically <a href="#usage" style="color: unset;"> creating your project using my project</a> and this is the whole point of this website. The generated pages are easily understandable, having easy readability, connectivty, avaliability and maintainability. </p>
+    <h4 id="faq-highlights">FAQ Highlights</h4>
+
+    <table>
+        <tr>
+            <td> How many pages are generated in one go? </td>
+            <td>7</td> 
+        </tr>
+
+        <tr>
+            <td>Can I edit the pages? </td>
+            <td>Yes</td> 
+        </tr>
+
+
+        <tr>
+            <td> Can I use the generated code as my Project? </td>
+            <td> Yes <br> But only as long as you understand the code </td> 
+        </tr>
+
+
+        <tr>
+            <td>Do I have to attribute or pay you? </td>
+            <td>No <br> It is not mandatory, but you can do it <a href="https://www.buymeacoffee.com/arhamsayyed" style="color: unset;" target="_blank"> here</a> if you want.  </td> 
+        </tr>
+
+        <tr>
+            <td>Can I use some and pages and ignore the rest?</td>
+            <td>Yes</td>
+        </tr>
+
+        <tr>
+            <td>How many times can I generate my project?</td>
+            <td>There is no limit on number of times you can generate the project </td>
+        </tr>
+
+        <tr>
+            <td>Is it possible to merge two projects?</td>
+            <td>Yes <br> You can use the service as many times as you want and use the output however you want to</td>
+        </tr>
+
+        <tr>
+            <td>Can I sell the output code?</td>
+            <td>No! <br> You can never sell or earn in any way using using the service. <br> This Project was designed to help and encourage students to build <br> their projects and encourage them towards learing web development while <br> showcasing the power & vast possibilities of what web can do! </td>
+        </tr>
+
+        <tr>
+            <td>I have a doubt/problem how can i contact?`</td>
+            <td>You can connect with me on <a href="https://x.com/arhamsayyed_dev" style="color: unset;"> X (formerly twitter)</a> or contact me via <a href="https://t.me/arhamsayyed" style="color: unset;">telegram</a></td>
+        </tr>
+
+    </table>
+
+  </section>
+
+  <section id="usage">
+    <h2>Usage</h2>
+    <p>The usage of this project is actually very simple, just follow the steps beloww to generate your project</p>
+    
+
+    <ol class="custom-ol">
+        <li> Go to the <a href="/" style="color: unset;"> index page </a> <p></p>
+            On the index page, in the top right corner, click on the <b>"Sign in with google button" </b> and sign-in using your gmail account <br> <p></p>
+            <img src="https://firebasestorage.googleapis.com/v0/b/anonshare-2c30f.appspot.com/o/users%2FqxHlZLPxOXaWWyvoHbmxQhAfyAn2%2F1710071019181_Click%20on%20this%20button.png?alt=media&token=713391ba-d997-4ce2-83e3-3df0bd80f1b1" alt="" width="600px">
+        </li>
+        <p></p>
+        <li>
+            Fill in the info <p></p>
+            Goto <a href="https://en.wikipedia.org/">wikipedia</a> and copy a url of a certain topic eg: 
+                <mark> <a href="https://en.wikipedia.org/wiki/Sloth" style="color: unset; text-decoration: none;">
+                     https://en.wikipedia.org/wiki/Sloth  
+                    </a></mark>
+        </li>
+        <br>
+        Now Start adding the required information. 
+        <br> <br>
+        <!-- Warning -->
+<div class="warning" style="background-color: rgba(255, 221, 0, 0.1); border: 1px solid rgba(255, 221, 0, 0.3); padding: 10px; border-radius: 4px;">
+    <img src="https://emojicdn.elk.sh/⚠️" alt="Warning Icon" style="vertical-align: middle; margin-right: 5px;" width="25px"> 
+    <p style="display: inline;"><strong>Warning:</strong> Please ensure that you fill in the correct information. The content you provide will be displayed on your project, representing your identity.</p>
+  </div>
+  <br>
+  1. In the field <mark>Wikipedia URL</mark> you have to enter the wikipedia url of the topic on which you want to build your web
+  <br> <br>
+  2. In the second field labeled as <mark>Name</mark> Enter your name in this field.
+  <br> <br>
+  3. In the third field i.e <mark>Roll No</mark> Enter your current roll number.
+  <br><br>
+  4. For the next two fields namely, <mark>Class</mark> & <mark>Div</mark> Enter your current class and div respectively.
+  <br><br>
+  5. The last field is for adding an image and it is labeled as <mark>Photo</mark> Here you have to add <b>Your Image Only</b> because again this will be showed on your project as your identity
+  <br> <p></p>
+
+  <img src="https://firebasestorage.googleapis.com/v0/b/anonshare-2c30f.appspot.com/o/users%2FqxHlZLPxOXaWWyvoHbmxQhAfyAn2%2F1710100601272_Please%20provide%20the%20necessary%20information..png?alt=media&token=8de89bcf-86fe-49aa-9551-45fa01fb1c02" alt=""  width="600px">
+
+
+  <p></p>
+  <li>
+      <b> home.html </b>
+      <br> <br>
+      Here, the contents of the page is pre-loaded and auto generated using the info provided on sign-in page <br>
+      The rest of the inputs of Colors, Dropdowns & ranges are for designing/customising the web page
+      <br> <br>
+      <img src="https://firebasestorage.googleapis.com/v0/b/anonshare-2c30f.appspot.com/o/users%2FqxHlZLPxOXaWWyvoHbmxQhAfyAn2%2F1710187538454_These%20are%20generated%20using%20the%20data%20you%20provided%20on%20the%20previous%20page.png?alt=media&token=04397aa8-0f7c-4f3f-8154-59b91242b8ee" alt="" width="600px">
+      <br> <br>
+      The Web page will be downloaded automatically after you click  the <mark>next</mark> button
+    </li>
+    <p></p> <br>
+    <li>
+        <b>Continue the same until the final page is downloaded</b>
+        <p></p>
+        Once you have downloaded all the pages, add all the files in one single folder 
+    </li>
+    <p></p> <br>
+    <li>
+        Now what?
+        <br> <br>
+        Since now your project is complete you can now submit it (as long as you understand the code)
+        <br>
+        If you have any question or doubt you can contact me via  <a href="https://x.com/arhamsayyed_dev" style="color: unset;"> X (formerly twitter)</a> <i>or</i> <a href="https://t.me/arhamsayyed" style="color: unset;">telegram</a>
+    </li>
+
+
+      </ol>
+  
+    </section>
+<!-- 
+  <section id="examples">
+    <h2>Examples</h2>
+    <p>Here are some examples to demonstrate the capabilities of our product:</p>
+    <pre><code>
+      // Example code snippet
+      function greet() {
+        console.log("Hello, world!");
+      }
+      greet();
+    </code></pre>
+  </section> -->
+
+  <section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>Thank you for reading this documentation. I hope it has been helpful in understanding how to use this website effectively.</p>
+  </section>
+
+</div>
+
+<!-- Dark Mode Toggle Button -->
+<button class="toggle-button" onclick="toggleDarkMode()">🌙</button>
+
+<script>
+  // Detect system dark mode preference
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.body.classList.add('dark-mode');
+  }
+
+
+
+  function toggleDarkMode() {
+    var body = document.body;
+    body.classList.toggle("dark-mode");
+  }
+
+  function zoomImage() {
+  var overlay = document.getElementById("zoomOverlay");
+  overlay.style.display = "block";
+}
+
+document.getElementById("zoomOverlay").addEventListener("click", function() {
+  this.style.display = "none";
+});
+
+
+</script>
+
+</body>
+</html>
