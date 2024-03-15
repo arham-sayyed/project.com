@@ -1,6 +1,8 @@
 import { signInWithGoogle, checkuser, signOutUser, getPfp, uploadImgAndGetURL, setData, getCurrentUser } from "./firebase.js";
 
-
+document.addEventListener('DOMContentLoaded', () => {
+    showOnloadToast();
+})
 
 // handle Form Submit
 document.getElementById('studentForm').addEventListener('submit', function(event) {
@@ -196,6 +198,11 @@ function showSuccessToast() {
     bsToast.show();
 }
 
+function showOnloadToast() {
+    const toast = document.getElementById('onloadToast');
+    const bsToast = new bootstrap.Toast(toast);
+    bsToast.show();
+}
 
 export function showLogoutToast() {
     const toast = document.getElementById('logoutToast');
