@@ -7,12 +7,12 @@ import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10
 import { switchButtons, showLoginToast, showLogoutToast, createUserUIDCookie, removeUserUIDCookie } from "./ui.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDe0nzpG11NNzNJ-xRVMtsjUNJJ_f-Llck",
-  authDomain: "project0sloth.firebaseapp.com",
-  projectId: "project0sloth",
-  storageBucket: "project0sloth.appspot.com",
-  messagingSenderId: "759800168236",
-  appId: "1:759800168236:web:a32b2665769c2ea5a07689"
+  apiKey: process.env.FB_STATIC_API_KEY,
+  authDomain: process.env.FB_STATIC_AUTH_DOMAIN,
+  projectId: process.env.FB_STATIC_PROJECT_ID,
+  storageBucket: process.env.FB_STATIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.FB_STATIC_MESSAGING_SENDER_ID,
+  appId: process.env.FB_STATIC_APP_ID
 };
 
 // Initialize Firebase
